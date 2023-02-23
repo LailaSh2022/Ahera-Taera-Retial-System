@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWD604_Task2_RetialCustomerManagementSystem", "SWD604_Task2_RetialCustomerManagementSystem.csproj", "{23FB5521-EF61-42CC-BFF4-D36EDC6C8E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest_SWD604_Task6", "..\UnitTest_SWD604_\UnitTest_SWD604_Task6.csproj", "{C03F7E72-72A5-4515-8613-33F38AD9FD30}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23FB5521-EF61-42CC-BFF4-D36EDC6C8E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FB5521-EF61-42CC-BFF4-D36EDC6C8E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FB5521-EF61-42CC-BFF4-D36EDC6C8E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FB5521-EF61-42CC-BFF4-D36EDC6C8E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C03F7E72-72A5-4515-8613-33F38AD9FD30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C03F7E72-72A5-4515-8613-33F38AD9FD30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C03F7E72-72A5-4515-8613-33F38AD9FD30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03F7E72-72A5-4515-8613-33F38AD9FD30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D19ECF86-8500-4F56-A96E-C968FAF3BFE8}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{23FB5521-EF61-42CC-BFF4-D36EDC6C8E63}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SWD604_Task2_RetialCustomerManagementSystem</RootNamespace>
+    <AssemblyName>SWD604_Task2_RetialCustomerManagementSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="KenRJControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\kenRJCode.RJControls.1.0.0\lib\net472\KenRJControls.dll</HintPath>
+    </Reference>
+    <Reference Include="RJCodeAdvance.RJControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RJCodeAdvance.RJControls.1.0.0\lib\net45\RJCodeAdvance.RJControls.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminTabPagesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminTabPagesForm.Designer.cs">
+      <DependentUpon>AdminTabPagesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillGenerationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BillGenerationForm.Designer.cs">
+      <DependentUpon>BillGenerationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessObjects\AddToShoppingCart.cs" />
+    <Compile Include="BusinessObjects\Bill.cs" />
+    <Compile Include="BusinessObjects\BillFactory.cs" />
+    <Compile Include="BusinessObjects\CreateNewCustomerFactory.cs" />
+    <Compile Include="BusinessObjects\CreateEditDeleteProduct.cs" />
+    <Compile Include="BusinessObjects\CreateEditDeleteProductFactory.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_CreateEditDeleteProduct.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_Bill.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_CreateNewCustomer.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_DressDetails.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_Order.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_AddToShoppingCart.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_ValidateInput.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_ValidateNewCustomer.cs" />
+    <Compile Include="BusinessObjects\FactoryMethod_ViewProduct.cs" />
+    <Compile Include="BusinessObjects\IAddToShoppingCart.cs" />
+    <Compile Include="BusinessObjects\IBill.cs" />
+    <Compile Include="BusinessObjects\IDressDetails.cs" />
+    <Compile Include="BusinessObjects\ICreateEditDeleteProduct.cs" />
+    <Compile Include="BusinessObjects\IOrder.cs" />
+    <Compile Include="BusinessObjects\IValidateInput.cs" />
+    <Compile Include="BusinessObjects\IViewProduct.cs" />
+    <Compile Include="BusinessObjects\Order.cs" />
+    <Compile Include="BusinessObjects\OrderFactory.cs" />
+    <Compile Include="BusinessObjects\Product.cs" />
+    <Compile Include="BusinessObjects\DressDetails.cs" />
+    <Compile Include="BusinessObjects\DressDetailsFactory.cs" />
+    <Compile Include="BusinessObjects\AddToShoppingCartFactory.cs" />
+    <Compile Include="BusinessObjects\ValidateInput.cs" />
+    <Compile Include="BusinessObjects\ValidateInputFactory.cs" />
+    <Compile Include="BusinessObjects\ViewProductFactory.cs" />
+    <Compile Include="BusinessObjects\ViewProduct.cs" />
+    <Compile Include="CustomerDashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerDashboardForm.Designer.cs">
+      <DependentUpon>CustomerDashboardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_ShoppingCartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer_ShoppingCartForm.Designer.cs">
+      <DependentUpon>Customer_ShoppingCartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\DataBaseConnection.cs" />
+    <Compile Include="DisplayProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayProductForm.Designer.cs">
+      <DependentUpon>DisplayProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessObjects\Customer.cs" />
+    <Compile Include="BusinessObjects\ValidateCustomerFactory.cs" />
+    <Compile Include="BusinessObjects\DisplaySubForm\OpenChildForm.cs" />
+    <Compile Include="BusinessObjects\ICreateCustomer.cs" />
+    <Compile Include="BusinessObjects\IValidateCustomer.cs" />
+    <Compile Include="BusinessObjects\CreateNewCustomer.cs" />
+    <Compile Include="BusinessObjects\ValidateNewCustomer.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main_Frame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_Frame.Designer.cs">
+      <DependentUpon>Main_Frame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RJControls\CustomTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RJControls\CustomTextBox.Designer.cs">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RJControls\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RJControls\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignUpForm.Designer.cs">
+      <DependentUpon>SignUpForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminTabPagesForm.resx">
+      <DependentUpon>AdminTabPagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillGenerationForm.resx">
+      <DependentUpon>BillGenerationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerDashboardForm.resx">
+      <DependentUpon>CustomerDashboardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer_ShoppingCartForm.resx">
+      <DependentUpon>Customer_ShoppingCartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplayProductForm.resx">
+      <DependentUpon>DisplayProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main_Frame.resx">
+      <DependentUpon>Main_Frame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="RJControls\CustomTextBox.resx">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RJControls\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignUpForm.resx">
+      <DependentUpon>SignUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\at_grayredlogo_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nicepng_gray_circle_png_1366211_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WishList.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seach-icon-10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping-cart-icon-free-0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShoppingCart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShoppingCart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExportNewCollectionImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Retail_Shop_image02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Retail_Shop_image01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sale01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoginBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoginPageTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoginButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SignUpTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-eye-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WomenTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueDress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueDressInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ElegantDressInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JumbsuitInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LinesDress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FactoryMethod\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DelivaryImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Payment_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\visaImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MasterCardImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24347798.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SignOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SignInTitle.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
