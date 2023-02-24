@@ -15,7 +15,7 @@ namespace SWD604_Task2_RetialCustomerManagementSystem.BusinessObjects
 			string sqlQuiry;
 			if (customerId == -1)			// Admin side
 			{
-				sqlQuiry = "Delete from [dbo].[Products] where [PR_Id] = " + productId;
+				sqlQuiry = "Delete from [dbo].[Products] where [PR_Id] = " + productId +" and PR_Display = 'N'";
 			}
 			else                            // Customer side
 			{
@@ -68,11 +68,11 @@ namespace SWD604_Task2_RetialCustomerManagementSystem.BusinessObjects
 			
 		}
 
-		public bool EditProduct(int productId,string name, string description, double price, int stock, string size)
+		public bool EditProduct(int productId,string name, string description, double price, int stock, string size)	// Update the product's record.
 		{
 			string sqlQuiry =
 				"update [dbo].[Products] set [PR_Stock_Qantity] = " + stock + ", [PR_Size]='" + size + "'" + ", [PR_Name]='" + name + "'"+
-				",[PR_Discription] = '"+description+"',[PR_Price]="+ price +" where PR_Id =" + productId ; 
+				",[PR_Discription] = '"+description+"',[PR_Price]="+ price +" where PR_Id =" + productId; 
 			
 			DatabaseConnection databaseConnection = new DatabaseConnection();   // Create Database Connection Using DatabaseConnection object
 			databaseConnection.Open();

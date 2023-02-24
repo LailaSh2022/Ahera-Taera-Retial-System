@@ -77,9 +77,9 @@ namespace SWD604_Task2_RetialCustomerManagementSystem.BusinessObjects
 			}
 		}
 
-		public bool displayProduct(string productName)			// action --> Del for delete --> PR_Display = N, Up for update.
+		public bool displayProduct(string productName)			// Display the given product on the customer's dashboard.
 		{
-			string sqlQuiry = "Update [dbo].[Products] set [PR_Display] ='Y' where [PR_Name] Like '" + productName + "'";     //in (select PR_Name from Products where PR_Id = " + productId+")" ;
+			string sqlQuiry = "Update [dbo].[Products] set [PR_Display] ='Y' where [PR_Name] Like '" + productName + "'";  
 			DatabaseConnection databaseConnection = new DatabaseConnection();   // Create Database Connection Using DatabaseConnection object
 			databaseConnection.Open();
 			int result = databaseConnection.ExecuteNonQuery(sqlQuiry);    // Execute the sql query.
@@ -89,9 +89,9 @@ namespace SWD604_Task2_RetialCustomerManagementSystem.BusinessObjects
 			else
 				return false;           // Error.
 		}
-		public bool HideProduct(string productName)            // action --> Del for delete --> PR_Display = N, Up for update.
+		public bool HideProduct(string productName)            // Hide the given product on the customer's dashboard.
 		{
-			string sqlQuiry = "Update [dbo].[Products] set [PR_Display] ='N' where [PR_Name] Like '" + productName +"'";        // (select PR_Name from Products where PR_Id = " + productId + ")";
+			string sqlQuiry = "Update [dbo].[Products] set [PR_Display] ='N' where [PR_Name] Like '" + productName +"'";   
 			DatabaseConnection databaseConnection = new DatabaseConnection();   // Create Database Connection Using DatabaseConnection object
 			databaseConnection.Open();
 			int result = databaseConnection.ExecuteNonQuery(sqlQuiry);    // Execute the sql query.

@@ -87,6 +87,7 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 				rjProductDelete_btn.Visible = false;
 				rjAddNewProduct_btn.Visible = false;
 				rjProductAdd_btn.Visible = true;
+				Grid_tmr.Stop();
 
 
 
@@ -189,10 +190,11 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			string status = order_dgv.Rows[rowindex].Cells[9].Value.ToString();       // Get the Status column's value.
 
 			updatePayment_Obj = new FactoryMethod_Bill().CreateBillInstance();
-				Order_obj = new FactoryMethod_Order().CreateOrderInstance();
-				double total = Order_obj.getTotal(price, delivary, discount*100);           // Re-Use the getTotal method from IOrder interface to calculate the updated amounts.
-
-			bool OrderUpdated = Order_obj.updateOrder(Convert.ToInt32(orderId),-1,price,quantity,delivary,discount,total,status);  // Re-Use the updateOrder Method --> -1 means Admin.
+			Order_obj = new FactoryMethod_Order().CreateOrderInstance();
+			// Re-Use the getTotal method from IOrder interface to calculate the updated amounts.
+			double total = Order_obj.getTotal(price, delivary, discount*100);           
+			// Re-Use the updateOrder Method --> -1 means Admin.
+			bool OrderUpdated = Order_obj.updateOrder(Convert.ToInt32(orderId),-1,price,quantity,delivary,discount,total,status);  
 				if (OrderUpdated)
 				{
 					int paymentId = updatePayment_Obj.getPaymentId(orderId);
@@ -292,11 +294,10 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			rjProductList_cbx.Visible = true;
 			rjBackGroundOfComboBox_btn.Visible = true;
 			rjProductEdit_btn.Visible = false;
-			
 			rjProductDelete_btn.Enabled = true;
-			ViewProducts_Obj = new FactoryMethod_ViewProduct().GetViewProductInstant();       // Re-Use Factory Method to return an instance of a Concrete ViewProduct.
+			// Re-Use Factory Method to return an instance of a Concrete ViewProduct.
+			ViewProducts_Obj = new FactoryMethod_ViewProduct().GetViewProductInstant();  
 			DataSet ds = ViewProducts_Obj.GetProducts("ADM");   // Admin 
-			//rjProductList_cbx.Items.Clear();
 			rjProductList_cbx.DataSource = null;
 
 			if (ds.Tables[0].Rows.Count > 0)            // Fill the Product's DropDownList
@@ -323,16 +324,16 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 				uploadMainImage = true;
 		}
 		string imageLocation = "";
-		private void rjBrowse_btn_Click(object sender, EventArgs e)
+		private void rjBrowse_btn_Click(object sender, EventArgs e)		// Browse produc's image.
 		{
 			try
 			{
-				OpenFileDialog dlg = new OpenFileDialog();
+				OpenFileDialog dlg = new OpenFileDialog();		// Open a file dialog window.
 				dlg.Filter = "JPG Files(*.jpg)|*.jbg| GIF Files(*.gif)|*.gif| All Files(*.*)|*.*";			// Filter the file's extentions to upload.
 				dlg.Title = "Select product image.";			// The title of the displayed dialog box.
 				if (dlg.ShowDialog() == DialogResult.OK)
 				{
-					imageLocation = dlg.FileName.ToString();
+					imageLocation = dlg.FileName.ToString();			// Image's file name and location.
 					productImage_pbx.ImageLocation = imageLocation;
 				}
 			}
@@ -342,12 +343,12 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			}
 		}
 
-		private void rjSave_btn_Click(object sender, EventArgs e)
+		private void rjSave_btn_Click(object sender, EventArgs e)		// Save Image.
 		{
 			ViewProducts_Obj = new FactoryMethod_ViewProduct().GetViewProductInstant();       // Re-Use Factory Method to return an instance of a Concrete ViewProduct.
 			if (uploadMainImage == true)
 			{
-				if(ViewProducts_Obj.addProductMainImage(imageLocation, productId))      // Add main image for exsisting added product
+				if(ViewProducts_Obj.addProductMainImage(imageLocation, productId))      // Re-use the addProductMainImage to add main image for given product Id.
 				{
 					rjUploadMainImage_rbn.Checked = false;
 					uploadMainImage = false;
@@ -356,7 +357,7 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			}
 			else
 			{
-				ViewProducts_Obj.addProductSubImages(imageLocation, productId); // Add sub images for exsisting added product
+				ViewProducts_Obj.addProductSubImages(imageLocation, productId);				// Re-use the addProductSubImage to add main image for given product Id.
 				MessageBox.Show("The selected image is added", "Add image to product");
 				uploadMainImage = false;
 			}
@@ -456,16 +457,17 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 
 		}
 		ICreateEditDeleteProduct editDeleteProduct_Obj;
-		private void rjProductDelete_btn_Click(object sender, EventArgs e)
+		private void rjProductDelete_btn_Click(object sender, EventArgs e)			// Delete the selected product.
 		{
 			DialogResult dialogResult = MessageBox.Show("Are you Sure you want to delete this Product and all of its items?", "Delete a Product", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
 			{
-				editDeleteProduct_Obj = new FactoryMethod_CreateEditDeleteProduct().CreateEditDeleteInst();       // Re-Use Factory Method to return an instance of a Concrete ViewProduct.
-				bool deleteProduct = editDeleteProduct_Obj.DeleteProductFromCart(productId, -1);			// -1 means the admin side
+				editDeleteProduct_Obj = new FactoryMethod_CreateEditDeleteProduct().CreateEditDeleteInst();       // Re-Use Factory Method.
+				bool deleteProduct = editDeleteProduct_Obj.DeleteProductFromCart(productId, -1);    // Re-use DeleteProductFromCart method. -1 --> means admin side.
 				if (deleteProduct)
 				{
 					MessageBox.Show("The selected product is deleted successfully.", "Delete a Product");
+					// Reset the Product's tab fields.
 					rjProductName_tbx.PlaceholderText = "Name";
 					rjProductDescription_tbx.PlaceholderText = "Product Description";
 					rjProductPrice_tbx.PlaceholderText = "Price";
@@ -479,10 +481,10 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			}
 		}
 
-		private void rjViewProductToCustomer_btn_Click(object sender, EventArgs e)
+		private void rjViewProductToCustomer_btn_Click(object sender, EventArgs e)		// Display and hide given product on Customer's dashboard.
 		{
 			ViewProducts_Obj = new FactoryMethod_ViewProduct().GetViewProductInstant();       // Re-Use Factory Method to return an instance of a Concrete ViewProduct.
-			if (rjNewProductToView_tbx.Texts == "" || rjOldProductToView_tbx.Texts == "")
+			if (rjNewProductToView_tbx.Texts == "" || rjOldProductToView_tbx.Texts == "")	// Input's Validation.
 			{
 				if (rjNewProductToView_tbx.Texts == "")
 				{
@@ -499,12 +501,12 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			{
 				rjOldProductToView_tbx.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(91)))), ((int)(((byte)(91)))));
 				rjNewProductToView_tbx.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(91)))), ((int)(((byte)(91)))));
-				ViewProducts_Obj.displayProduct(rjNewProductToView_tbx.Texts);
-				ViewProducts_Obj.HideProduct(rjOldProductToView_tbx.Texts);
+				ViewProducts_Obj.displayProduct(rjNewProductToView_tbx.Texts);		// Display the given product on Customer's dashboard
+				ViewProducts_Obj.HideProduct(rjOldProductToView_tbx.Texts);         // Hide the given product on Customer's dashboard
 			}
 			
 		}
-
+		// Get the radio button selected value
 		private void XL_rbn_CheckedChanged(object sender, EventArgs e)
 		{
 			productSize = "XL";
@@ -527,9 +529,9 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 
 		
 
-		private void rjProductInfo_btn_Click(object sender, EventArgs e)
+		private void rjProductInfo_btn_Click(object sender, EventArgs e)	// Click search button.
 		{
-			
+			// Get selected value from the drop-down list.
 			if (rjProductList_cbx.SelectedIndex == 0)
 			{
 				rjProductList_cbx.SelectedIndex += 1;
@@ -542,12 +544,12 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			
 			if (rjEditProduct_btn.Visible)
 			{
-				FillEditProduct(productId);
+				FillEditProduct(productId);			// Display the product details on admin's dashboard.
 			}
 		}
 
 	
-		public void FillEditProduct(int productId)
+		public void FillEditProduct(int productId)      // Display the product details on admin's dashboard.
 		{
 			try
 			{
@@ -555,11 +557,11 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 				ProductDetails_Obj = new FactoryMethod_DressDetails().CreateProductDetailsInstance();       // Re-use Factory Method 
 				dt = ProductDetails_Obj.GetProductDetails(productId, "ADM");         // Re-use GetProductDetails method.
 				bool imageViewed = LoadDressImages(dt);        // View images for selected dress using image list.
-				rjProductName_tbx.PlaceholderText = dt.Rows[0]["PR_Name"].ToString();
-				rjProductDescription_tbx.PlaceholderText = dt.Rows[0]["PR_Discription"].ToString();
-				rjProductPrice_tbx.PlaceholderText = "$" + dt.Rows[0]["PR_Price"].ToString();
-				rjProductStockNumber_tbx.PlaceholderText = dt.Rows[0]["PR_Stock_Qantity"].ToString();
-				switch (dt.Rows[0]["PR_Size"].ToString())
+				rjProductName_tbx.PlaceholderText = dt.Rows[0]["PR_Name"].ToString();   // Display the product's name.
+				rjProductDescription_tbx.PlaceholderText = dt.Rows[0]["PR_Discription"].ToString(); // Display the product's description.
+				rjProductPrice_tbx.PlaceholderText = "$" + dt.Rows[0]["PR_Price"].ToString();   // Display the product's price.
+				rjProductStockNumber_tbx.PlaceholderText = dt.Rows[0]["PR_Stock_Qantity"].ToString();   // Display the product's size.
+				switch (dt.Rows[0]["PR_Size"].ToString())		// Display the product's size.
 				{
 					case "XL":
 						{
@@ -653,7 +655,7 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 
 		}
 
-		private void rjEditProduct_btn_Click(object sender, EventArgs e)
+		private void rjEditProduct_btn_Click(object sender, EventArgs e)		// Save edited product. 
 		{
 
 			bool validateSize = false;
@@ -679,10 +681,12 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 			}
 			if (validateName && validatePrice && validateStock && validateSize && (productId !=0))
 			{
-
-				addEditDeleteProduct_Obj = new FactoryMethod_CreateEditDeleteProduct().CreateEditDeleteInst();      // Re-use CreateEditDeleteProduct factory method class.
+				// Re-use CreateEditDeleteProduct factory method class.
+				addEditDeleteProduct_Obj = new FactoryMethod_CreateEditDeleteProduct().CreateEditDeleteInst();   
+				// Use EditProduct method.
 				bool EditProduct = addEditDeleteProduct_Obj.EditProduct(productId,returnText(rjProductName_tbx), returnText(rjProductDescription_tbx),
-									Convert.ToDouble(RemoveSpecialCharacters(returnText(rjProductPrice_tbx))), Convert.ToInt32(returnText(rjProductStockNumber_tbx)), productSize);
+									Convert.ToDouble(RemoveSpecialCharacters(returnText(rjProductPrice_tbx))), 
+									Convert.ToInt32(returnText(rjProductStockNumber_tbx)), productSize);
 				
 				if (EditProduct)
 				{
@@ -700,7 +704,7 @@ namespace SWD604_Task2_RetialCustomerManagementSystem
 
 	
 
-		public string returnText(RJCodeAdvance.RJControls.RJTextBox textBox)
+		public string returnText(RJCodeAdvance.RJControls.RJTextBox textBox)		// Remove special characters from given text. 
 		{
 			string text ="";
 			if (textBox.Texts == "")

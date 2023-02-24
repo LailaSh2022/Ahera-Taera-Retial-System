@@ -11,17 +11,19 @@ namespace SWD604_Task2_RetialCustomerManagementSystem.BusinessObjects
 	class DressDetails :  IDressDetails
 	{
 		
-		public DataTable GetProductDetails(int productId, string user)
+		public DataTable GetProductDetails(int productId, string user)		// Returns the product details.
 		{
 			string sqlQuiry;
-			if (user == "ADM")			// Admin
+			if (user == "ADM")          // Admin
 			{
-				sqlQuiry = "select Products.PR_Id, Products.PR_Name,Products.PR_Price,Products.PR_Discription, " +  // Select product information relaed to given product Id.
+				// Select product information relaed to given product Id.
+				sqlQuiry = "select Products.PR_Id, Products.PR_Name,Products.PR_Price,Products.PR_Discription, " +  
 				"[PR_Stock_Qantity], [PR_Main_Image],[PR_Size] from Products where Products.PR_Id =" + productId;
 			}
-			else
+			else      // Customer     
 			{
-				sqlQuiry = "select Products.PR_Id, Products.PR_Name,Products.PR_Price,Products.PR_Discription " +  // Select product information relaed to given product Id.
+				// Select product information relaed to given product Id.
+				sqlQuiry = "select Products.PR_Id, Products.PR_Name,Products.PR_Price,Products.PR_Discription " +  
 				"from Products where Products.PR_Id =" + productId;
 			}
 			
